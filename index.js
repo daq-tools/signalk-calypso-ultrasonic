@@ -111,7 +111,7 @@ module.exports = function signalkCalypsoUltrasonic (app) {
     })
 
     _ultrasonic.on('status', status => {
-      app.setProviderStatus(`${plugin.STATUS[status.status]}${status.data === '' ? '' : `: ${status.data}`}`)
+      app.setPluginStatus(`${plugin.STATUS[status.status]}${status.data === '' ? '' : `: ${status.data}`}`)
     })
 
     _ultrasonic.start()
