@@ -12,7 +12,8 @@ module.exports = function signalkCalypsoUltrasonic (app) {
     connected: 'Connected to Ultrasonic',
     received_characteristic: 'Received characteristic',
     subscribed_to_dataservice: 'Subscribed to data service',
-    sleeping: 'Ultrasonic in sleep mode...'
+    sleeping: 'Ultrasonic in sleep mode...',
+    last_data_received: 'Last data received from Ultrasonic'
   }
 
   plugin.Ultrasonic = Ultrasonic
@@ -111,7 +112,7 @@ module.exports = function signalkCalypsoUltrasonic (app) {
     })
 
     _ultrasonic.on('status', status => {
-      app.setProviderStatus(`${plugin.STATUS[status.status]}${status.data === '' ? '' : `: ${status.data}`}`)
+      app.setPluginStatus(`${plugin.STATUS[status.status] || status.status}${(!status.data || status.data === '') ? '' : `: ${status.data}`}`)
     })
 
     _ultrasonic.start()
